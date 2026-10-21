@@ -1,0 +1,20 @@
+# 1. Interactive Real-Time Tracker on sample video
+conda run -n tf2.18 python main.py --source data/sample_video.mp4
+
+# 2. Interactive Tracker on live webcam
+conda run -n tf2.18 python main.py --source 0 --select-roi
+
+# 3. Interactive Tracker on synthetic real-time stream
+conda run -n tf2.18 python main.py --source synthetic --particles 1000 --mode overlay
+
+# 4. Headless Benchmark Runner
+conda run -n tf2.18 python benchmark.py --frames 300 --particles 1000 --noise 3.0 --output-dir benchmark_output
+
+# 5. Run Unit Test Suite
+conda run -n tf2.18 python tests/test_trackers.py
+
+# Option 1: Direct Streamlit launch
+conda run -n tf2.18 streamlit run app.py
+
+# Option 2: Via main CLI with the --web flag
+conda run -n tf2.18 python main.py --web
